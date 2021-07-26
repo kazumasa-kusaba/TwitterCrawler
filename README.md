@@ -1,5 +1,5 @@
 # TwitterCrawler
-Crawler to collect tweets and favorites of any user
+Crawler to collect user timelines and favorites of any users
 
 # Installation
 Just clone this and start using it.  
@@ -31,23 +31,25 @@ In general,
 * `--quite`: do not output log
 * `--help`: show help
 
-## Get tweets
-* `--command`: `get_tweets`
-* `--target-screen-name`: any screen names you want to get tweets from
+## Retrieve timelines
+* `--command`: `retrieve_user_timelines`
+* `--target-screen-name`: any screen names you want to retrieve timelines from
 
-ex) If you want to get [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) tweets...  
+ex) If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) timelines...  
 ```console
-python twittercrawler.py --command get_tweets --target-screen-name Cristiano BarackObama
+python twittercrawler.py --command retrieve_user_timelines --target-screen-name Cristiano BarackObama
 ```
+The retrieved timelines are in the directories (`results/user_timelines/`)
 
-## Get favorites
-* `--command`: `get_favorites`
-* `--target-screen-name`: any screen names you want to get favorites from
+## Retrieve favorites
+* `--command`: `retrieve_favorites`
+* `--target-screen-name`: any screen names you want to retrieve favorites from
 
-ex) If you want to get [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
+ex) If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
 ```console
-python twittercrawler.py --command get_favorites --target-screen-name Cristiano BarackObama
+python twittercrawler.py --command retrieve_favorites --target-screen-name Cristiano BarackObama
 ```
+The retrieved favorites are in the directories (`results/user_timelines/`)
 
 # License
 ```
