@@ -19,7 +19,35 @@ pip install XXX
 ```
 
 # Usage
+
+## Write the access token infomation
+
 **TODO: write here**
+
+## Command line options
+In general,  
+* `--command`: the command you want to run
+* `--target-screen-name`: screen name of the target name
+* `--quite`: do not output log
+* `--help`: show help
+
+## Get tweets
+* `--command`: `get_tweets`
+* `--target-screen-name`: any screen names you want to get tweets from
+
+ex) If you want to get [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) tweets...  
+```console
+python twittercrawler.py --command get_tweets --target-screen-name Cristiano BarackObama
+```
+
+## Get favorites
+* `--command`: `get_favorites`
+* `--target-screen-name`: any screen names you want to get favorites from
+
+ex) If you want to get [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
+```console
+python twittercrawler.py --command get_favorites --target-screen-name Cristiano BarackObama
+```
 
 # License
 ```
