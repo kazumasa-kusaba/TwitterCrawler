@@ -49,7 +49,7 @@ ex) If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com
 ```console
 python twittercrawler.py --command retrieve_favorites --target-screen-name Cristiano BarackObama
 ```
-The retrieved favorites are in the directories (`results/user_timelines/`)
+The retrieved favorites are in the directories (`results/favorites/`)
 
 # License
 ```
