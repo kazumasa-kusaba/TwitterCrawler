@@ -19,8 +19,14 @@ pip install requests requests_oauthlib
 # Usage
 
 ## Write the access token infomation
-
-**TODO: write here**
+Write your access token information to `CONFIG` file located in the parent directory.    
+Replace your information with "XXX".  
+```CONFIG
+ACCESS_TOKEN=XXX
+ACCESS_TOKEN_SECRET=XXX
+CONSUMER_API_KEY=XXX
+CONSUMER_KEY=XXX
+```
 
 ## Command line options
 In general,  
