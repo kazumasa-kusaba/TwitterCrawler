@@ -8,14 +8,12 @@ git clone git@github.com:kazumasa-kusaba/TwitterCrawler.git
 ```
 
 ## Dependencies
-**TODO: write here**
-* [temp](http://temp.com)  
-* [temp](http://temp.com)  
+* [requests](https://github.com/psf/requests)  
+* [requests-oauthlib](https://github.com/requests/requests-oauthlib)  
+
 Just do:  
 ```console
-pip install XXX
-pip install XXX
-pip install XXX
+pip install requests requests_oauthlib
 ```
 
 # Usage
