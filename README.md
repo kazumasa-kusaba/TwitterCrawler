@@ -1,5 +1,9 @@
 # TwitterCrawler
-Crawler to collect user timelines and favorites of any users
+Crawler to collect user timelines and favorites of any users.  
+
+## Features
+* can retrieve user timelines and favorites of any users as JSON files.
+* can wait for a reasonable amount of time until the API limits are lifted.
 
 # Installation
 Just clone this and start using it.  
