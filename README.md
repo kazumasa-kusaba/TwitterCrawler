@@ -23,13 +23,17 @@ pip install requests requests_oauthlib
 # Usage
 
 ## Write your access token infomation
-Write your access token information to `CONFIG` file located in the parent directory.    
-Replace "XXX" with your information.  
-```CONFIG
-ACCESS_TOKEN=XXX
-ACCESS_TOKEN_SECRET=XXX
-CONSUMER_KEY=XXX
-CONSUMER_SECRET=XXX
+Write your access token information to `config.json` located in the parent directory.    
+Replace each preset values with your own informations.  
+```json
+{
+    "twitter_api": {
+        "access_token": "ACCESS_TOKEN",
+        "access_token_secret": "ACCESS_TOKEN_SECRET",
+        "consumer_key": "CONSUMER_KEY",
+        "consumer_secret": "CONSUMER_SECRET"
+    }
+}
 ```
 
 ## Command line options
