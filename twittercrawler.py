@@ -5,6 +5,7 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "utils")
 from utils.twitter_api import TwitterApi
+from utils.file_manager import FileManager
 
 logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.DEBUG) # TODO: change the log level before releasing this software
@@ -15,6 +16,9 @@ def retrieve_user_timelines(args):
 
     # TODO: replace "XXX" with the each appropriate variables
     twitter_api = TwitterApi("XXX", "XXX", "XXX", "XXX")
+
+    # TODO: replace "XXX" with the appropriate variable
+    file_manager = FileManager("XXX")
 
     for screen_name in screen_names:
         logger.debug(screen_name)
@@ -27,6 +31,9 @@ def retrieve_favorites(args):
 
     # TODO: replace "XXX" with the each appropriate variables
     twitter_api = TwitterApi("XXX", "XXX", "XXX", "XXX")
+
+    # TODO: replace "XXX" with the appropriate variable
+    file_manager = FileManager("XXX")
 
     # TODO: handle an exception properly
     for screen_name in screen_names:
