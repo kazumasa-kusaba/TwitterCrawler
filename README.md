@@ -34,10 +34,10 @@ CONSUMER_KEY=XXX
 
 ## Command line options
 In general,  
+* `-h, --help`: show help
 * `--command`: the command you want to run
 * `--target-screen-name`: screen name of the target name
 * `--quite`: do not output log
-* `--help`: show help
 
 ## Retrieve timelines
 * `--command`: `retrieve_user_timelines`
