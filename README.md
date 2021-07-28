@@ -28,8 +28,8 @@ Replace "XXX" with your information.
 ```CONFIG
 ACCESS_TOKEN=XXX
 ACCESS_TOKEN_SECRET=XXX
-CONSUMER_API_KEY=XXX
 CONSUMER_KEY=XXX
+CONSUMER_SECRET=XXX
 ```
 
 ## Command line options
