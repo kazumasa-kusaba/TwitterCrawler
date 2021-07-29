@@ -41,7 +41,7 @@ In general,
 * `-h, --help`: show help
 * `-q, --quiet`: do not output log
 ```console
-python twittercrawler.py [-h] [-q Q] command [target_screen_name [target_screen_name ...]]
+python twittercrawler.py [-h] [-q] command [target_screen_name [target_screen_name ...]]
 ```
 
 ## Retrieve timelines
