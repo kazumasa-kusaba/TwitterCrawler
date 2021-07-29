@@ -39,27 +39,22 @@ Replace each preset values with your own informations.
 ## Command line options
 In general,  
 * `-h, --help`: show help
-* `--command`: the command you want to run
-* `--target-screen-name`: screen name of the target name
-* `--quite`: do not output log
+* `-q, --quiet`: do not output log
+```console
+python twittercrawler.py [-h] [-q Q] command [target_screen_name [target_screen_name ...]]
+```
 
 ## Retrieve timelines
-* `--command`: `retrieve_user_timelines`
-* `--target-screen-name`: any screen names you want to retrieve timelines from
-
-ex) If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) timelines...  
+If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) timelines...  
 ```console
-python twittercrawler.py --command retrieve_user_timelines --target-screen-name Cristiano BarackObama
+python twittercrawler.py retrieve_user_timelines Cristiano BarackObama
 ```
 The retrieved timelines are in the directories (`results/user_timelines/`)
 
 ## Retrieve favorites
-* `--command`: `retrieve_favorites`
-* `--target-screen-name`: any screen names you want to retrieve favorites from
-
-ex) If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
+If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
 ```console
-python twittercrawler.py --command retrieve_favorites --target-screen-name Cristiano BarackObama
+python twittercrawler.py retrieve_favorites Cristiano BarackObama
 ```
 The retrieved favorites are in the directories (`results/favorites/`)
 

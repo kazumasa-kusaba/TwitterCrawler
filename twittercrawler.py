@@ -43,9 +43,9 @@ def retrieve_favorites(args):
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument("--command", required=True, help="the command you want to run")
-    arg_parser.add_argument("--target-screen-name", nargs="*", required=True, help="screen name of the target name")
-    arg_parser.add_argument("--quite", required=False, help="do not output log")
+    arg_parser.add_argument("command", help="the command you want to run")
+    arg_parser.add_argument("target_screen_name", nargs="*", help="screen name of the target name")
+    arg_parser.add_argument("-q", "--quiet", required=False, action="store_true", help="do not output log")
     args = arg_parser.parse_args()
 
     if args.command == "retrieve_user_timelines":
