@@ -14,11 +14,15 @@ def retrieve_user_timelines(args):
     screen_names = args.target_screen_name
     logger.debug(screen_names)
 
-    # TODO: replace "XXX" with the each appropriate variables
-    twitter_api = TwitterApi("XXX", "XXX", "XXX", "XXX")
+    file_manager = FileManager()
+    json_dicts = file_manager.get_json_dicts(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
+    logger.debug(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
+    logger.debug(json_dicts)
 
-    # TODO: replace "XXX" with the appropriate variable
-    file_manager = FileManager("XXX")
+    twitter_api = TwitterApi(json_dicts["twitter_api"]["access_token"], \
+                             json_dicts["twitter_api"]["access_token_secret"], \
+                             json_dicts["twitter_api"]["consumer_key"], \
+                             json_dicts["twitter_api"]["consumer_secret"])
 
     for screen_name in screen_names:
         logger.debug(screen_name)
@@ -29,11 +33,15 @@ def retrieve_favorites(args):
     screen_names = args.target_screen_name
     logger.debug(screen_names)
 
-    # TODO: replace "XXX" with the each appropriate variables
-    twitter_api = TwitterApi("XXX", "XXX", "XXX", "XXX")
+    file_manager = FileManager()
+    json_dicts = file_manager.get_json_dicts(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
+    logger.debug(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
+    logger.debug(json_dicts)
 
-    # TODO: replace "XXX" with the appropriate variable
-    file_manager = FileManager("XXX")
+    twitter_api = TwitterApi(json_dicts["twitter_api"]["access_token"], \
+                             json_dicts["twitter_api"]["access_token_secret"], \
+                             json_dicts["twitter_api"]["consumer_key"], \
+                             json_dicts["twitter_api"]["consumer_secret"])
 
     # TODO: handle an exception properly
     for screen_name in screen_names:
