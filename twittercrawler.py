@@ -7,8 +7,10 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)) + "utils")
 from utils.twitter_api import TwitterApi
 from utils.file_manager import FileManager
 
+log_handler = logging.StreamHandler(sys.stdout)
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.DEBUG) # TODO: change the log level before releasing this software
+logger.addHandler(log_handler)
+logger.setLevel(logging.DEBUG) # TODO: change the log level before releasing this software
 
 def retrieve_user_timelines(args):
     screen_names = args.target_screen_name

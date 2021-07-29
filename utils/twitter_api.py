@@ -4,7 +4,10 @@ import logging
 import json
 from requests_oauthlib import OAuth1Session
 
+log_handler = logging.StreamHandler(sys.stdout)
 logger = logging.getLogger(__name__)
+logger.addHandler(log_handler)
+logger.setLevel(logging.DEBUG) # TODO: change the log level before releasing this software
 
 class TwitterApi():
     def __init__(self, access_token, access_token_secret, consumer_key, consumer_secret):
