@@ -16,7 +16,6 @@ def retrieve_user_timelines(args):
 
     file_manager = FileManager()
     json_dicts = file_manager.get_json_dicts(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
-    logger.debug(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
     logger.debug(json_dicts)
 
     twitter_api = TwitterApi(json_dicts["twitter_api"]["access_token"], \
@@ -35,7 +34,6 @@ def retrieve_favorites(args):
 
     file_manager = FileManager()
     json_dicts = file_manager.get_json_dicts(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
-    logger.debug(os.path.join(os.path.dirname(os.path.abspath(__file__)), "config.json"))
     logger.debug(json_dicts)
 
     twitter_api = TwitterApi(json_dicts["twitter_api"]["access_token"], \
