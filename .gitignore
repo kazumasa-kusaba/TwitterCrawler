@@ -131,4 +131,4 @@ dmypy.json
 # Others
 results/*
 !.gitkeep
-CONFIG
+config.json
