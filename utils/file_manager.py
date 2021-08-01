@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 import json
 
 class FileManager():
@@ -6,10 +7,15 @@ class FileManager():
         pass
     
     def get_json_dicts(self, json_file_path):
-        with open(json_file_path, "r", encoding="utf8") as f:
-            data = f.read()
-            json_dicts = json.loads(data)
-            return json_dicts
+        data = self.__read_file(json_file_path)
+        json_dicts = json.loads(data)
+        return json_dicts
+    
+    def save_json_dict_as_json_format(self, directory_path, json_file_path, dict):
+        if not os.path.exists(directory_path):
+            os.makedirs(directory_path)
+        data = json.dumps(dict, ensure_ascii=False, indent=2)
+        self.__write_file(os.path.join(directory_path, json_file_path), data)
     
     def assemble_datetime_file_name(self, datetime):
         """
@@ -67,4 +73,13 @@ class FileManager():
             return "12"
         else:
             return "XX"
+    
+    def __read_file(self, file_path):
+        with open(file_path, "r", encoding="utf8") as f:
+            data = f.read()
+            return data
+
+    def __write_file(self, file_path, data):
+        with open(file_path, "w", encoding="utf8") as f:
+            f.write(data)
 
