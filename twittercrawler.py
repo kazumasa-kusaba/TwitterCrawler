@@ -46,11 +46,13 @@ def retrieve_favorites(args):
                              json_dicts["twitter_api"]["consumer_key"], \
                              json_dicts["twitter_api"]["consumer_secret"])
 
-    # TODO: handle an exception properly
     for screen_name in screen_names:
         logger.debug(screen_name)
-        # TODO: handle an exception properly
-        twitter_api.retrieve_favorite(screen_name, 200)
+        tweets = twitter_api.retrieve_favoritres(screen_name, 200)
+        for tweet in tweets:
+            file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
+            directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
+            file_manager.save_json_dict_as_json_format(directory_path, file_name, tweet)
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
