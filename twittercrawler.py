@@ -28,6 +28,8 @@ def retrieve_user_timelines(args):
     for screen_name in screen_names:
         logger.debug(screen_name)
         tweets = twitter_api.retrieve_user_timeline(screen_name, 200)
+        if tweets is None:
+            continue
         for tweet in tweets:
             file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "tweets", screen_name)
@@ -48,11 +50,13 @@ def retrieve_favorites(args):
 
     for screen_name in screen_names:
         logger.debug(screen_name)
-        tweets = twitter_api.retrieve_favoritres(screen_name, 200)
-        for tweet in tweets:
-            file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
+        favorites = twitter_api.retrieve_favorites(screen_name, 200)
+        if favorites is None:
+            continue
+        for favorite in favorites:
+            file_name = file_manager.assemble_datetime_file_name(favorite["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
-            file_manager.save_json_dict_as_json_format(directory_path, file_name, tweet)
+            file_manager.save_json_dict_as_json_format(directory_path, file_name, favorite)
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
