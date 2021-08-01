@@ -28,7 +28,9 @@ def retrieve_user_timelines(args):
     for screen_name in screen_names:
         logger.debug(screen_name)
         # TODO: handle an exception properly
-        twitter_api.retrieve_user_timeline(screen_name, 200)
+        tweets = twitter_api.retrieve_user_timeline(screen_name, 200)
+        for tweet in tweets:
+            file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
 
 def retrieve_favorites(args):
     screen_names = args.target_screen_name
