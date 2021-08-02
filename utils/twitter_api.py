@@ -2,36 +2,40 @@
 import sys
 import logging
 import json
+import time
 from requests_oauthlib import OAuth1Session
 
-log_handler = logging.StreamHandler(sys.stdout)
-logger = logging.getLogger(__name__)
-logger.addHandler(log_handler)
-logger.setLevel(logging.DEBUG) # TODO: change the log level before releasing this software
 
 class TwitterApi():
-    def __init__(self, access_token, access_token_secret, consumer_key, consumer_secret):
+    def __init__(self, access_token, access_token_secret, consumer_key, consumer_secret, logging_level):
         self.oauth = OAuth1Session(consumer_key, consumer_secret, access_token, access_token_secret)
+
+        log_handler = logging.StreamHandler(sys.stdout)
+        log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
+        self.logger = logging.getLogger(__name__)
+        self.logger.addHandler(log_handler)
     
     def retrieve_user_timeline(self, screen_name, count):
         params = {"screen_name":screen_name, "count":count}
         response = self.oauth.get("https://api.twitter.com/1.1/statuses/user_timeline.json", params=params)
 
         if "X-Rate-Limit-Remaining" in response.headers:
-            if response.headers["X-Rate-Limit-Remaining"] == "0":
-                # TODO: write the processing to wait for api restrictions to be lifted
-                logging.warning("warning: wait %s sec" % 9999)
+            rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            if rate_limit_remaining == "0":
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
+                time.sleep(rate_limit_remaining)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
-                logging.error("error: %s" % response.headers["status"])
+                self.logger.error("status: %s" % response.headers["status"])
                 return None
 
         json_dict = json.loads(response.text)
         if "errors" in json_dict:
             for error in json_dict["errors"]:
-                logger.error("error: %s (code: %d)" % (error["message"], error["code"]))
-            return None
+                self.logger.critical("message: %s, code: %d" % (error["message"], error["code"]))
+            self.logger.critical("check if the access_token infomartion in config.json is correct")
+            sys.exit(1)
 
         return json_dict
 
@@ -40,20 +44,22 @@ class TwitterApi():
         response = self.oauth.get("https://api.twitter.com/1.1/favorites/list.json", params=params)
 
         if "X-Rate-Limit-Remaining" in response.headers:
-            if response.headers["X-Rate-Limit-Remaining"] == "0":
-                # TODO: write the processing to wait for api restrictions to be lifted
-                logging.warning("warning: wait %s sec" % 9999)
+            rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            if rate_limit_remaining == "0":
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
+                time.sleep(rate_limit_remaining)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
-                logging.error("error: %s" % response.headers["status"])
+                self.logger.error("status: %s" % response.headers["status"])
                 return None
 
         json_dict = json.loads(response.text)
         if "errors" in json_dict:
             for error in json_dict["errors"]:
-                logger.error("error: %s (code: %d)" % (error["message"], error["code"]))
-            return None
+                self.logger.critical("message: %s, code: %d" % (error["message"], error["code"]))
+            self.logger.critical("check if the access_token infomartion in config.json is correct")
+            sys.exit(1)
 
         return json_dict
 

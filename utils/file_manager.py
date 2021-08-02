@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+import sys
 import os
+import logging
 import json
 
 class FileManager():
-    def __init__(self):
-        pass
+    def __init__(self, logging_level):
+        log_handler = logging.StreamHandler(sys.stdout)
+        log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
+        self.logger = logging.getLogger(__name__)
+        self.logger.addHandler(log_handler)
     
     def get_json_dicts(self, json_file_path):
         data = self.__read_file(json_file_path)
@@ -16,6 +21,9 @@ class FileManager():
             os.makedirs(directory_path)
         data = json.dumps(dict, ensure_ascii=False, indent=2)
         self.__write_file(os.path.join(directory_path, json_file_path), data)
+
+    def exists_file(self, directory_path, json_file_path):
+        return os.path.isfile(os.path.join(directory_path, json_file_path))
     
     def assemble_datetime_file_name(self, datetime):
         """
