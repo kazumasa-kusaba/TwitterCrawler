@@ -31,8 +31,9 @@ class TwitterApi():
         json_dict = json.loads(response.text)
         if "errors" in json_dict:
             for error in json_dict["errors"]:
-                self.logger.error("message: %s, code: %d" % (error["message"], error["code"]))
-            return None
+                self.logger.critical("message: %s, code: %d" % (error["message"], error["code"]))
+            self.logger.critical("check if the access_token infomartion in config.json is correct")
+            sys.exit(1)
 
         return json_dict
 
@@ -53,8 +54,9 @@ class TwitterApi():
         json_dict = json.loads(response.text)
         if "errors" in json_dict:
             for error in json_dict["errors"]:
-                self.logger.error("message: %s, code: %d" % (error["message"], error["code"]))
-            return None
+                self.logger.critical("message: %s, code: %d" % (error["message"], error["code"]))
+            self.logger.critical("check if the access_token infomartion in config.json is correct")
+            sys.exit(1)
 
         return json_dict
 
