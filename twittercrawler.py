@@ -27,10 +27,12 @@ def retrieve_user_timelines(args, logging_level):
                              logging_level)
 
     for screen_name in screen_names:
-        logger.debug(screen_name)
+        logger.debug("start getting %s\'s tweets" % screen_name)
         tweets = twitter_api.retrieve_user_timeline(screen_name, 200)
         if tweets is None:
+            logger.info("%s has no new tweets" % screen_name)
             continue
+        count_of_tweets_retrieved = 0
         for tweet in tweets:
             file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "tweets", screen_name)
@@ -39,6 +41,11 @@ def retrieve_user_timelines(args, logging_level):
                 logger.debug("already exists")
                 break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, tweet)
+            count_of_tweets_retrieved += 1
+        if count_of_tweets_retrieved == 0:
+            logger.info("%s has no new tweets" % screen_name)
+        else:
+            logger.info("%s has %d new tweets" % (screen_name, count_of_tweets_retrieved))
 
 def retrieve_favorites(args, logging_level):
     screen_names = args.target_screen_name
@@ -55,10 +62,12 @@ def retrieve_favorites(args, logging_level):
                              logging_level)
 
     for screen_name in screen_names:
-        logger.debug(screen_name)
+        logger.debug("start getting %s\'s favorites" % screen_name)
         favorites = twitter_api.retrieve_favorites(screen_name, 200)
         if favorites is None:
+            logger.info("%s has no new favorites" % screen_name)
             continue
+        count_of_favorites_retrieved = 0
         for favorite in favorites:
             file_name = file_manager.assemble_datetime_file_name(favorite["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
@@ -67,6 +76,11 @@ def retrieve_favorites(args, logging_level):
                 logger.debug("already exists")
                 break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, favorite)
+            count_of_favorites_retrieved += 1
+        if count_of_favorites_retrieved == 0:
+            logger.info("%s has no new favorites" % screen_name)
+        else:
+            logger.info("%s has %d new favorites" % (screen_name, count_of_favorites_retrieved))
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
@@ -76,7 +90,7 @@ if __name__ == "__main__":
     args = arg_parser.parse_args()
 
     # set logging configuration
-    logging_level = logging.DEBUG
+    logging_level = logging.INFO
     if args.quiet == True:
         logging_level = logging.CRITICAL
     logger.setLevel(logging_level)
