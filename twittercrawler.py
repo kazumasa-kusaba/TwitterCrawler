@@ -33,6 +33,9 @@ def retrieve_user_timelines(args, logging_level):
         for tweet in tweets:
             file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "tweets", screen_name)
+            if file_manager.exists_file(directory_path, file_name):
+                logger.debug("already exists")
+                break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, tweet)
 
 def retrieve_favorites(args, logging_level):
@@ -57,6 +60,9 @@ def retrieve_favorites(args, logging_level):
         for favorite in favorites:
             file_name = file_manager.assemble_datetime_file_name(favorite["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
+            if file_manager.exists_file(directory_path, file_name):
+                logger.debug("already exists")
+                break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, favorite)
 
 if __name__ == "__main__":
@@ -67,6 +73,7 @@ if __name__ == "__main__":
     args = arg_parser.parse_args()
 
     logging_level = logging.DEBUG
+    logger.setLevel(logging_level)
     if args.quiet == True:
         logging_level = logging.CRITICAL
         logger.setLevel(logging_level)

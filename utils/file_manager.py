@@ -21,6 +21,9 @@ class FileManager():
             os.makedirs(directory_path)
         data = json.dumps(dict, ensure_ascii=False, indent=2)
         self.__write_file(os.path.join(directory_path, json_file_path), data)
+
+    def exists_file(self, directory_path, json_file_path):
+        return os.path.isfile(os.path.join(directory_path, json_file_path))
     
     def assemble_datetime_file_name(self, datetime):
         """
