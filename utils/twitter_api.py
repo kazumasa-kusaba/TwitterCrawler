@@ -2,6 +2,7 @@
 import sys
 import logging
 import json
+import time
 from requests_oauthlib import OAuth1Session
 
 
@@ -21,7 +22,8 @@ class TwitterApi():
         if "X-Rate-Limit-Remaining" in response.headers:
             rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
             if rate_limit_remaining == "0":
-                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % 9999)
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
+                time.sleep(rate_limit_remaining)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
@@ -44,7 +46,8 @@ class TwitterApi():
         if "X-Rate-Limit-Remaining" in response.headers:
             rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
             if rate_limit_remaining == "0":
-                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % 9999)
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
+                time.sleep(rate_limit_remaining)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
