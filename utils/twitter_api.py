@@ -19,9 +19,9 @@ class TwitterApi():
         response = self.oauth.get("https://api.twitter.com/1.1/statuses/user_timeline.json", params=params)
 
         if "X-Rate-Limit-Remaining" in response.headers:
-            if response.headers["X-Rate-Limit-Remaining"] == "0":
-                # TODO: write the processing to wait for api restrictions to be lifted
-                self.logger.warning("wait %s sec" % 9999)
+            rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            if rate_limit_remaining == "0":
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % 9999)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
@@ -42,9 +42,9 @@ class TwitterApi():
         response = self.oauth.get("https://api.twitter.com/1.1/favorites/list.json", params=params)
 
         if "X-Rate-Limit-Remaining" in response.headers:
-            if response.headers["X-Rate-Limit-Remaining"] == "0":
-                # TODO: write the processing to wait for api restrictions to be lifted
-                self.logger.warning("wait %s sec" % 9999)
+            rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            if rate_limit_remaining == "0":
+                self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % 9999)
 
         if "status" in response.headers:
             if response.headers["status"] != "200 OK":
