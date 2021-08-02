@@ -1,10 +1,15 @@
 # -*- coding: utf-8 -*-
+import sys
 import os
+import logging
 import json
 
 class FileManager():
-    def __init__(self):
-        pass
+    def __init__(self, logging_level):
+        log_handler = logging.StreamHandler(sys.stdout)
+        self.logger = logging.getLogger(__name__)
+        self.logger.addHandler(log_handler)
+        self.logger.setLevel(logging_level)
     
     def get_json_dicts(self, json_file_path):
         data = self.__read_file(json_file_path)
