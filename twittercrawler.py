@@ -30,7 +30,7 @@ def retrieve_user_timelines(args, logging_level):
         logger.debug("start getting %s\'s tweets" % screen_name)
         tweets = twitter_api.retrieve_user_timeline(screen_name, 200)
         if tweets is None:
-            logger.info("cannot get %s\'s tweets" % screen_name)
+            logger.error("cannot get %s\'s tweets" % screen_name)
             continue
         count_of_tweets_retrieved = 0
         for tweet in tweets:
@@ -65,7 +65,7 @@ def retrieve_favorites(args, logging_level):
         logger.debug("start getting %s\'s favorites" % screen_name)
         favorites = twitter_api.retrieve_favorites(screen_name, 200)
         if favorites is None:
-            logger.info("cannot get %s\'s favorites" % screen_name)
+            logger.error("cannot get %s\'s favorites" % screen_name)
             continue
         count_of_favorites_retrieved = 0
         for favorite in favorites:
