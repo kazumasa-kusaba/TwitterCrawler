@@ -78,7 +78,7 @@ if __name__ == "__main__":
     logging_level = logging.DEBUG
     logger.setLevel(logging_level)
     if args.quiet == True:
-        logging_level = logging.CRITICAL
+        logging_level = logging.NOSET
         logger.setLevel(logging_level)
 
     if args.command == "retrieve_user_timelines":
