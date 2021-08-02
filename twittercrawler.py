@@ -33,6 +33,7 @@ def retrieve_user_timelines(args, logging_level):
         for tweet in tweets:
             file_name = file_manager.assemble_datetime_file_name(tweet["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "tweets", screen_name)
+            # skip saving tweets if already got
             if file_manager.exists_file(directory_path, file_name):
                 logger.debug("already exists")
                 break
@@ -60,6 +61,7 @@ def retrieve_favorites(args, logging_level):
         for favorite in favorites:
             file_name = file_manager.assemble_datetime_file_name(favorite["created_at"])
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
+            # skip saving favorites if already got
             if file_manager.exists_file(directory_path, file_name):
                 logger.debug("already exists")
                 break
@@ -72,6 +74,7 @@ if __name__ == "__main__":
     arg_parser.add_argument("-q", "--quiet", required=False, action="store_true", help="do not output log")
     args = arg_parser.parse_args()
 
+    # set logging configuration
     logging_level = logging.DEBUG
     logger.setLevel(logging_level)
     if args.quiet == True:
