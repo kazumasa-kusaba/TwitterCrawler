@@ -8,6 +8,7 @@ from utils.twitter_api import TwitterApi
 from utils.file_manager import FileManager
 
 log_handler = logging.StreamHandler(sys.stdout)
+log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
 logger = logging.getLogger(__name__)
 logger.addHandler(log_handler)
 
@@ -76,16 +77,15 @@ if __name__ == "__main__":
 
     # set logging configuration
     logging_level = logging.DEBUG
-    logger.setLevel(logging_level)
     if args.quiet == True:
-        logging_level = logging.NOSET
-        logger.setLevel(logging_level)
+        logging_level = logging.CRITICAL
+    logger.setLevel(logging_level)
 
     if args.command == "retrieve_user_timelines":
         retrieve_user_timelines(args, logging_level)
     elif args.command == "retrieve_favorites":
         retrieve_favorites(args, logging_level)
     else:
-        logger.critical("critical: %s is invalid command!!" % args.command)
+        logger.critical("%s is invalid command!!" % args.command)
         sys.exit(1)
 

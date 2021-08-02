@@ -10,9 +10,9 @@ class TwitterApi():
         self.oauth = OAuth1Session(consumer_key, consumer_secret, access_token, access_token_secret)
 
         log_handler = logging.StreamHandler(sys.stdout)
+        self.log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
         self.logger = logging.getLogger(__name__)
         self.logger.addHandler(log_handler)
-        self.logger.setLevel(logging_level)
     
     def retrieve_user_timeline(self, screen_name, count):
         params = {"screen_name":screen_name, "count":count}
