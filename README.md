@@ -62,7 +62,7 @@ python twittercrawler.py retrieve_user_timelines Cristiano BarackObama
 The retrieved timelines are in the directories (`results/user_timelines/`)
 
 ### Retrieve favorites
-If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
+If you want to retrieve their favorites...  
 ```console
 python twittercrawler.py retrieve_favorites Cristiano BarackObama
 ```
