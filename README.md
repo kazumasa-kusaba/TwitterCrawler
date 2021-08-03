@@ -48,9 +48,6 @@ optional arguments:
 ```
 
 ## Commands
-* `retrieve_user_timelines`: retrieve and save the timeline of screen_name specified by the arguments
-* `retrieve_favorites`: 
-
 | command name            | description                                                                 |
 |-------------------------|-----------------------------------------------------------------------------|
 | retrieve_user_timelines | retrieve and save the user timelines of any user specified by the arguments |
