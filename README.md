@@ -20,10 +20,8 @@ Just do:
 pip install requests requests_oauthlib
 ```
 
-# Usage
-
 ## Write your access token infomation
-Write your access token information to `config.json` located in the parent directory.    
+Write your access token information to `config.json` located in this project's parent directory.    
 Replace each preset values with your own informations.  
 ```json
 {
@@ -36,22 +34,37 @@ Replace each preset values with your own informations.
 }
 ```
 
-## Command line options
-In general,  
-* `-h, --help`: show help
-* `-q, --quiet`: do not output log
+# Usage
 ```console
-python twittercrawler.py [-h] [-q] command [target_screen_name [target_screen_name ...]]
+usage twittercrawler.py [-h] [-q] command [target_screen_name [target_screen_name ...]]
+
+positional arguments:
+  command             the command you want to run
+  target_screen_name  screen name of the target name
+
+optional arguments:
+  -h, --help          show this help message and exit
+  -q, --quiet         do not output log
 ```
 
-## Retrieve timelines
+## Commands
+* `retrieve_user_timelines`: retrieve and save the timeline of screen_name specified by the arguments
+* `retrieve_favorites`: 
+
+| command name            | description                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| retrieve_user_timelines | retrieve and save the user timelines of any user specified by the arguments |
+| retrieve_favorites      | retrieve and save the favorites of any user specified by the arguments      |
+
+## Samples
+### Retrieve timelines
 If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) timelines...  
 ```console
 python twittercrawler.py retrieve_user_timelines Cristiano BarackObama
 ```
 The retrieved timelines are in the directories (`results/user_timelines/`)
 
-## Retrieve favorites
+### Retrieve favorites
 If you want to retrieve [@Cristiano (Cristiano Ronaldo)](https://twitter.com/cristiano) and [@BarackObama (Barack Obama)](https://twitter.com/barackobama) favorites...  
 ```console
 python twittercrawler.py retrieve_favorites Cristiano BarackObama
