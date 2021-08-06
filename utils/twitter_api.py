@@ -14,6 +14,7 @@ class TwitterApi():
         log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
         self.logger = logging.getLogger(__name__)
         self.logger.addHandler(log_handler)
+        self.logger.setLevel(logging_level)
     
     def retrieve_user_timeline(self, screen_name, count):
         params = {"screen_name":screen_name, "count":count}
@@ -21,6 +22,7 @@ class TwitterApi():
 
         if "X-Rate-Limit-Remaining" in response.headers:
             rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            self.logger.debug("rate_limit_remaining: %s" % rate_limit_remaining)
             if rate_limit_remaining == "0":
                 self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
                 time.sleep(rate_limit_remaining)
@@ -45,6 +47,7 @@ class TwitterApi():
 
         if "X-Rate-Limit-Remaining" in response.headers:
             rate_limit_remaining = response.headers["X-Rate-Limit-Remaining"]
+            self.logger.debug("rate_limit_remaining: %s" % rate_limit_remaining)
             if rate_limit_remaining == "0":
                 self.logger.warning("twitter api rate-limit error occured. wait %s seconds for rate-limit be lifted. " % rate_limit_remaining)
                 time.sleep(rate_limit_remaining)

@@ -10,6 +10,7 @@ class FileManager():
         log_handler.setFormatter(logging.Formatter('[%(asctime)s][%(levelname)s] %(message)s'))
         self.logger = logging.getLogger(__name__)
         self.logger.addHandler(log_handler)
+        self.logger.setLevel(logging_level)
     
     def get_json_dicts(self, json_file_path):
         data = self.__read_file(json_file_path)
