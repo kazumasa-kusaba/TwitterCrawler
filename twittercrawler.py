@@ -38,7 +38,7 @@ def retrieve_user_timelines(args, logging_level):
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "tweets", screen_name)
             # skip saving tweets if already got
             if file_manager.exists_file(directory_path, file_name):
-                logger.debug("already exists")
+                logger.debug("%s already exists" % file_name)
                 break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, tweet)
             count_of_tweets_retrieved += 1
@@ -73,7 +73,7 @@ def retrieve_favorites(args, logging_level):
             directory_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results", "favorites", screen_name)
             # skip saving favorites if already got
             if file_manager.exists_file(directory_path, file_name):
-                logger.debug("already exists")
+                logger.debug("%s already exists" % file_name)
                 break
             file_manager.save_json_dict_as_json_format(directory_path, file_name, favorite)
             count_of_favorites_retrieved += 1
