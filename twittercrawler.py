@@ -42,7 +42,7 @@ def retrieve_user_timelines(args, logging_level):
         if count_of_tweets_retrieved == 0:
             logger.info("%s has no new tweets" % screen_name)
         else:
-            logger.info("%s has %d new tweets" % (screen_name, count_of_tweets_retrieved))
+            logger.info("%s has new %d tweets" % (screen_name, count_of_tweets_retrieved))
 
 def retrieve_favorites(args, logging_level):
     screen_names = args.target_screen_name
@@ -74,7 +74,7 @@ def retrieve_favorites(args, logging_level):
         if count_of_favorites_retrieved == 0:
             logger.info("%s has no new favorites" % screen_name)
         else:
-            logger.info("%s has %d new favorites" % (screen_name, count_of_favorites_retrieved))
+            logger.info("%s has new %d favorites" % (screen_name, count_of_favorites_retrieved))
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser()
